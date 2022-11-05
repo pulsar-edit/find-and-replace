@@ -2,7 +2,7 @@
 
 const path = require('path');
 const temp = require('temp').track();
-const fs = require('fs-plus');
+const fs = require('fs');
 const dedent = require('dedent');
 const {TextBuffer} = require('atom');
 const ResultsPaneView = require('../lib/project/results-pane');
@@ -1181,7 +1181,6 @@ describe(`ProjectFindView (ripgrep=${ripgrep})`, () => {
       sampleJs = path.join(testDir, 'project/sample.js');
       sampleCoffee = path.join(testDir, 'sample.coffee');
 
-      fs.makeTreeSync(testDir);
       fs.writeFileSync(sampleCoffee, fs.readFileSync(require.resolve('./fixtures/sample.coffee')));
       fs.writeFileSync(sampleJs, fs.readFileSync(require.resolve('./fixtures/project/sample.js')));
 
