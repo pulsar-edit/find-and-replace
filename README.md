@@ -1,6 +1,6 @@
 # Find and Replace package
 
-Find and replace in the current buffer or across the entire project in Atom.
+Find and replace in the current buffer or across the entire project.
 
 ## Find in buffer
 
