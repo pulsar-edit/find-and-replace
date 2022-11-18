@@ -1,7 +1,6 @@
 # Find and Replace package
-[![CI](https://github.com/atom/find-and-replace/actions/workflows/ci.yml/badge.svg)](https://github.com/atom/find-and-replace/actions/workflows/ci.yml)
 
-Find and replace in the current buffer or across the entire project in Atom.
+Find and replace in the current buffer or across the entire project.
 
 ## Find in buffer
 

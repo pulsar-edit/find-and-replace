@@ -26,7 +26,7 @@
       "find-and-replace:clear-history"
     ]
   },
-  "repository": "https://github.com/atom/find-and-replace",
+  "repository": "https://github.com/pulsar-edit/find-and-replace",
   "engines": {
     "atom": "*"
   },
