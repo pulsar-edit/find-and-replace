@@ -12,6 +12,29 @@ ResultsPaneView = require './project/results-pane'
 ReporterProxy = require './reporter-proxy'
 
 metricsReporter = new ReporterProxy()
+menuItem = {
+  'label': 'Find'
+  'before': ['Packages']
+  'submenu': [
+    { 'label': 'Find in Buffer', 'command': 'find-and-replace:show'}
+    { 'label': 'Replace in Buffer', 'command': 'find-and-replace:show-replace'}
+    { 'label': 'Select Next', 'command': 'find-and-replace:select-next'}
+    { 'label': 'Select All', 'command': 'find-and-replace:select-all'}
+    { 'label': 'Toggle Find in Buffer', 'command': 'find-and-replace:toggle'}
+    { 'type': 'separator' }
+    { 'label': 'Find in Project', 'command': 'project-find:show'}
+    { 'label': 'Toggle Find in Project', 'command': 'project-find:toggle'}
+    { 'type': 'separator' }
+    { 'label': 'Find All', 'command': 'find-and-replace:find-all'}
+    { 'label': 'Find Next', 'command': 'find-and-replace:find-next'}
+    { 'label': 'Find Previous', 'command': 'find-and-replace:find-previous'}
+    { 'label': 'Replace Next', 'command': 'find-and-replace:replace-next'}
+    { 'label': 'Replace All', 'command': 'find-and-replace:replace-all'}
+    { 'type': 'separator' }
+    { 'label': 'Clear History', 'command': 'find-and-replace:clear-history'}
+    { 'type': 'separator' }
+  ]
+}
 
 module.exports =
   activate: ({findOptions, findHistory, replaceHistory, pathsHistory}={}) ->
@@ -48,6 +71,14 @@ module.exports =
         @findModel.setEditor(paneItem.getEmbeddedTextEditor())
       else
         @findModel.setEditor(null)
+
+    if atom.config.get 'find-and-replace.showInMenuBar'
+      atom.menu.add [menuItem]
+    @subscriptions.add atom.config.observe 'find-and-replace.showInMenuBar', (value) =>
+      if value
+        atom.menu.add [menuItem]
+      else
+        atom.menu.remove [menuItem]
 
     @subscriptions.add atom.commands.add '.find-and-replace, .project-find', 'window:focus-next-pane', ->
       atom.views.getView(atom.workspace).focus()
@@ -235,6 +266,8 @@ module.exports =
     @autocompleteManagerService = null
     @subscriptions?.dispose()
     @subscriptions = null
+    
+    atom.menu.remove [menuItem]
 
   serialize: ->
     findOptions: @findOptions.serialize()
