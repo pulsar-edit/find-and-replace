@@ -54,7 +54,7 @@ module.exports =
 
     @findOptions = new FindOptions(findOptions)
     @findModel = new BufferSearch(@findOptions)
-    @resultsModel = new ResultsModel(@findOptions, metricsReporter)
+    @resultsModel = new ResultsModel(@findOptions)
 
     @subscriptions.add atom.workspace.getCenter().observeActivePaneItem (paneItem) =>
       @subscriptions.delete @currentItemSub
@@ -165,11 +165,6 @@ module.exports =
         selectNextObjectForEditorElement(this).undoLastSelection()
       'find-and-replace:select-skip': (event) ->
         selectNextObjectForEditorElement(this).skipCurrentSelection()
-
-  consumeMetricsReporter: (service) ->
-    metricsReporter.setReporter(service)
-    new Disposable ->
-      metricsReporter.unsetReporter()
 
   consumeElementIcons: (service) ->
     getIconServices().setElementIcons service
