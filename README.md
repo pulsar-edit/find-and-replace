@@ -1,3 +1,5 @@
+# This Repo is now archived under Pulsar as it's been bundled into the editor [#517](https://github.com/pulsar-edit/pulsar/pull/517)
+
 # Find and Replace package
 
 Find and replace in the current buffer or across the entire project.
